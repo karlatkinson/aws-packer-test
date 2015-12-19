@@ -1,13 +1,13 @@
 
 {
   "variables": {
-    "ami_id_latest": "",
+    "source_ami_id": "",
     "ami_uuid": ""
   },
   "builders": [{
     "type": "amazon-ebs",
     "region": "eu-west-1",
-    "source_ami": "{{user `ami_id_latest`}}",
+    "source_ami": "{{user `source_ami_id`}}",
     "instance_type": "t2.micro",
     "ami_name": "aws-ami-hardened {{timestamp}}",
     "ssh_username": "ubuntu",
