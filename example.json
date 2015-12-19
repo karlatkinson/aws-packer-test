@@ -1,0 +1,20 @@
+
+{
+  "variables": {
+    "ami_id_latest": "",
+    "ami_uuid": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "region": "eu-west-1",
+    "source_ami": "{{user `ami_id_latest`}}",
+    "instance_type": "t2.micro",
+    "ami_name": "aws-ami-hardened {{timestamp}}",
+    "ssh_username": "ubuntu",
+    "associate_public_ip_address": "true",
+    "tags": {
+      "AMIFoundryUUID": "{{user `ami_uuid`}}",
+      "Description": "Ubuntu base image hardened for PCI env, with LDAP client config & OSSEC agent install"
+    }
+  }]
+}
