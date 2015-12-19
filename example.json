@@ -1,7 +1,7 @@
 
 {
   "variables": {
-    "source_ami_id": "{{env `ATLAS_BASE_ARTIFACT_AWS_AMI_ID`}}",
+    "source_ami_id": "{{env `SOURCE_AMI_ID`}}",
     "ami_uuid": ""
   },
   "builders": [{
