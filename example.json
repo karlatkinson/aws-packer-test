@@ -2,7 +2,7 @@
 {
   "variables": {
     "source_ami_id": "{{env `SOURCE_AMI_ID`}}",
-    "ami_uuid": ""
+    "ami_uuid": "{{env `ATLAS_BUILD_GITHUB_COMMIT_SHA`}}"
   },
   "builders": [{
     "type": "amazon-ebs",
