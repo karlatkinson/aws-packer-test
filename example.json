@@ -16,5 +16,6 @@
       "AMIFoundryUUID": "{{user `ami_uuid`}}",
       "Description": "Ubuntu base image hardened for PCI env, with LDAP client config & OSSEC agent install"
     }
-  }]
+  }],
+  "post-processors": ["vagrant"]
 }
