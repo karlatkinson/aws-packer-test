@@ -33,5 +33,9 @@
         "metadata": {
             "provider": "virtualbox"
         }
-    }]
+    }],
+    "push": {
+        "name": "karlatkinson/aws_packer_test",
+        "vcs": true
+    }
 }
