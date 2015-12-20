@@ -1,21 +1,29 @@
-
 {
-  "variables": {
-    "source_ami_id": "{{env `SOURCE_AMI_ID`}}",
-    "ami_uuid": "{{env `ATLAS_BUILD_GITHUB_COMMIT_SHA`}}"
-  },
-  "builders": [{
-    "type": "amazon-ebs",
-    "region": "eu-west-1",
-    "source_ami": "{{user `source_ami_id`}}",
-    "instance_type": "t2.micro",
-    "ami_name": "aws-ami-hardened {{timestamp}}",
-    "ssh_username": "ubuntu",
-    "associate_public_ip_address": "true",
-    "tags": {
-      "AMIFoundryUUID": "{{user `ami_uuid`}}",
-      "Description": "Ubuntu base image hardened for PCI env, with LDAP client config & OSSEC agent install"
-    }
-  }],
-  "post-processors": ["vagrant"]
+    "variables": {
+        "source_ami_id": "{{env `SOURCE_AMI_ID`}}",
+        "ami_uuid": "{{env `ATLAS_BUILD_GITHUB_COMMIT_SHA`}}",
+        "atlas_token": "{{env `ATLAS_TOKEN`}}"
+    },
+    "builders": [{
+        "type": "amazon-ebs",
+        "region": "eu-west-1",
+        "source_ami": "{{user `source_ami_id`}}",
+        "instance_type": "t2.micro",
+        "ami_name": "aws-ami-hardened {{timestamp}}",
+        "ssh_username": "ubuntu",
+        "associate_public_ip_address": "true",
+        "tags": {
+            "AMIFoundryUUID": "{{user `ami_uuid`}}",
+            "Description": "Ubuntu base image hardened for PCI env, with LDAP client config & OSSEC agent install"
+        }
+    }],
+    "post-processors": [{
+        "type": "atlas",
+        "token": "{{user `atlas_token`}}",
+        "artifact": "karlatkinson/aws-packer-test",
+        "artifact_type": "amazon.ami",
+        "metadata": {
+            "created_at": "{{timestamp}}"
+        }
+    }]
 }
