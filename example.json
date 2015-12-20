@@ -20,7 +20,7 @@
     "post-processors": [{
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
-        "artifact": "karlatkinson/aws-packer-test",
+        "artifact": "karlatkinson/aws_packer_test",
         "artifact_type": "amazon.ami",
         "metadata": {
             "created_at": "{{timestamp}}"
@@ -28,7 +28,7 @@
     }, {
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
-        "artifact": "karlatkinson/aws-packer-test",
+        "artifact": "karlatkinson/aws_packer_test",
         "artifact_type": "vagrant.box",
         "metadata": {
             "provider": "virtualbox"
