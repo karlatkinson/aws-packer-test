@@ -29,6 +29,9 @@
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
         "artifact": "karlatkinson/aws-packer-test",
-        "artifact_type": "vagrant.box"
+        "artifact_type": "vagrant.box",
+        "metadata": {
+            "provider": "virtualbox"
+        }
     }]
 }
