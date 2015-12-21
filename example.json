@@ -1,8 +1,14 @@
 {
+    "push": {
+        "name": "",
+        "vcs": true
+    },
     "variables": {
         "source_ami_id": "{{env `SOURCE_AMI_ID`}}",
         "ami_uuid": "{{env `ATLAS_BUILD_GITHUB_COMMIT_SHA`}}",
-        "atlas_token": "{{env `ATLAS_TOKEN`}}"
+        "atlas_token": "{{env `ATLAS_TOKEN`}}",
+        "atlas_username": "{{env `ATLAS_USERNAME`}}",
+        "atlas_name": "{{env `ATLAS_NAME`}}"
     },
     "builders": [{
         "type": "amazon-ebs",
@@ -18,6 +24,9 @@
         }
     }],
     "post-processors": [{
+        "type": "vagrant",
+        "keep_input_artifact": false
+    }, {
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
         "artifact": "karlatkinson/aws_packer_test",
@@ -28,14 +37,12 @@
     }, {
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
-        "artifact": "karlatkinson/aws_packer_test",
+        "only": ["virtualbox-iso"],
+        "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
-            "provider": "virtualbox"
+            "provider": "virtualbox",
+            "version": "0.0.1"
         }
-    }],
-    "push": {
-        "name": "karlatkinson/aws_packer_test",
-        "vcs": true
-    }
+    }]
 }
